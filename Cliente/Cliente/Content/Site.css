@@ -1,0 +1,66 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+#crear {
+width:150px;
+height: 30px;
+background-color:forestgreen;
+padding-left:20px;
+padding-top: 5px;
+float:right;
+margin-bottom:20px;
+}
+
+.navbar{
+    background-color:#068587;
+}
+
+.navbar-inverse .navbar-brand {
+color:white;
+}
+
+ a.imagenCrear{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+
+}
+ .linkEditar{
+     background: url(../Iconos/editar2.png) no-repeat top left;
+     display: inline-block;
+     width: 25px;
+     height: 25px;
+     text-indent: -9999px; /* hides the link text */
+
+ }
+ .linkEliminar{
+     background: url(../Iconos/eliminar10.jpg) no-repeat top left;
+     display: inline-block;
+     width: 25px;
+     height: 25px;
+     text-indent: -9999px; /* hides the link text */
+     margin-left:5px;
+ }
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}

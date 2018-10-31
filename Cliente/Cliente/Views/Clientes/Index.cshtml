@@ -1,0 +1,83 @@
+﻿@*@model IEnumerable < Cliente.Models.Clientes > *@
+
+@model PagedList.IPagedList<Cliente.Models.Clientes>
+    @using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css"/>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Administrar Clientes</h2>
+
+<p>
+    <div id="crear">
+        @Html.ActionLink("Add new Client", "Create", null, new { @class = "imagenCrear" })
+    </div>
+</p>
+
+@using (Html.BeginForm("Index", "Clientes", FormMethod.Get)) {
+<p>
+    Encontrar por nombre: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Buscar" />
+</p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            
+            @Html.ActionLink("Primer Nombre", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter})
+           @*@Html.DisplayNameFor(model => model.primerNombre)*@ 
+        </th>
+        <th>
+           Segundo nombre:
+           @*@Html.DisplayNameFor(model => model.segundoNombre)*@ 
+        </th>
+        <th>
+            Direccion:
+           @*@Html.DisplayNameFor(model => model.direccion)*@ 
+        </th>
+        <th>
+           Telefono
+          @*@Html.DisplayNameFor(model => model.telefono)*@ 
+        </th>
+        <th>
+          Correo:   
+           @*@Html.DisplayNameFor(model => model.correo)*@ 
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.primerNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.segundoNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }, new { @class = "linkEditar" }) 
+            @*  @Html.ActionLink("Details", "Details", new { id=item.id }) | *@
+            @Html.ActionLink("Delete", "Delete", new { id=item.id }, new { @class = "linkEliminar" })
+        </td>
+    </tr>
+}
+
+</table>
+<br/>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page =>Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
